@@ -60,3 +60,74 @@ Los archivos estáticos son generalmente:
 
 ## Herencia de plantillas
 
+Una plantilla puede tomar como base a otra y reemplazar sólo algunas partes de la misma, esto se conoce como **herencia de plantilla**. Para hacer esto se necesitan dos archivos: una plantilla de base que será la plantilla general y una segunda que heredará de la primera (tomará todo el contenido de la primera y reemplazará o agregará algunas partes).
+
+Debajo se muestra el contenido del archivo *base.html* que constituye una plantilla que se utilizará como base común para otras.
+
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div class="container">
+            <header>
+
+            </header>
+
+            <nav>
+
+            </nav>
+
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </body>
+</html>
+```
+
+La directiva ```{% block content %}``` define una porción de la plantilla que será reemplazada o redefinida en las plantillas que hereden de la misma. En este caso, el nombre de dicho bloque es *content* y finaliza con la directiva ```{% endblock %}```
+
+Para heredar de la plantilla *base.html* se debe incluir la directiva ```{% extends "base.html" %}``` al principio de la nueva plantilla. Además, se puede redefinir el contenido del bloque *content* utilizando las directivas ```{% block content %}``` y ```{% endblock %}```. Por ejemplo, la plantilla *main.html* que hereda de *base.html* se vería como se muestra debajo.
+
+```html
+{% extends "main.html" %}
+{% block content %}
+<div>
+	Este es el contenido
+</div>
+{% endblock %}
+</html>
+```
+
+El resultado de invocar a *render_template()* para renderizar la plantilla *main.html* sería el siguiente:
+
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div class="container">
+            <header>
+
+            </header>
+
+            <nav>
+
+            </nav>
+
+            <div>
+		Este es el contenido
+	    </div>
+        </div>
+    </body>
+</html>
+```
+
+Así, mediante herencia de plantillas se puede evitar repetir código y ordenar mejor el contenido HTML.
