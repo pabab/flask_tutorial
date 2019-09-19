@@ -13,7 +13,7 @@ app = Flask("myapp")
 @app.route("/")
 def hello():
     return render_template("hello.html", nombre="Pablo")
-``
+```
 
 Para renderizar una plantilla se debe:
 
