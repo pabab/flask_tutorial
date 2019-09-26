@@ -35,4 +35,8 @@ Para correr la aplicación, el siguiente comando crea un servidor temporal de de
 ```
 python app.py
 ```
+También se puede ejecutar el servidor, de manera que se reinicie automáticamente cuando detecte cambios en el código, con el siguiente comando:
 
+```
+FLASK_APP=main.py FLASK_DEBUG=1 python -m flask run
+```

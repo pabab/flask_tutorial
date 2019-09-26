@@ -94,13 +94,12 @@ La directiva ```{% block content %}``` define una porción de la plantilla que s
 Para heredar de la plantilla *base.html* se debe incluir la directiva ```{% extends "base.html" %}``` al principio de la nueva plantilla. Además, se puede redefinir el contenido del bloque *content* utilizando las directivas ```{% block content %}``` y ```{% endblock %}```. Por ejemplo, la plantilla *main.html* que hereda de *base.html* se vería como se muestra debajo.
 
 ```html
-{% extends "main.html" %}
+{% extends "base.html" %}
 {% block content %}
 <div>
 	Este es el contenido
 </div>
 {% endblock %}
-</html>
 ```
 
 El resultado de invocar a *render_template()* para renderizar la plantilla *main.html* sería el siguiente:
