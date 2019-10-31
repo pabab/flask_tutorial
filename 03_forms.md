@@ -13,4 +13,68 @@ El método **POST** *envía* información al servidor para crear o actualizar un
 
 Más infomación: [https://www.w3schools.com/tags/ref_httpmethods.asp](https://www.w3schools.com/tags/ref_httpmethods.asp)
 
+Existen diferentes maneras de generar estos pedidos. Por ejemplo, los pedidos GET se generan al escribir una URL en la barra de direcciones y presionar ENTER, o al hacer clic sobre un enlace.
 
+## Formularios y pedidos POST
+
+Una forma de generar pedidos POST es a través de formularios. La etiqueta <form> permite especificar los atributos *method* y *action*. En *method* se puede especificar el tipo de request que generará el formulario (por ejemplo GET o POST).
+
+
+```html
+<form method="POST" action="/agregar">
+    <label>Nombre: </label>
+    <input name="user">
+    <br>
+    <label>Tiempo: </label>
+	<input name="time">
+    <br>
+	<button>lalal</button>
+</form>
+```
+
+Hay que programar desde el lado del servidor un endpoint /agregar que reciba los datos, es decir que reciba pedidos GET y también pedidos POST. Para eso se agrega el siguiente decorador arriba de la función:
+
+```python
+@app.route("/agregar", methods=["GET", "POST"])
+def agregar():
+	...
+```
+
+El tema es que el endpoint agregar sirve para 2 cosas:
+Recibir un pedido GET y mostrar el HTML con el formulario
+Recibir un pedido POST con los datos enviados por el formulario
+
+```python
+@app.route("/agregar", methods=["GET", "POST"])
+def hello2():
+    if request.method == "POST":
+        
+    else:
+        ...
+   	return render_template("agregar.html")
+```
+
+Entonces, si el pedido fue un POST, vamos a procesar los datos del formulario, si fue un GET simplemente renderizamos la plantilla
+
+## El patron POST, REDIRECT, GET
+
+Una vez que procesamos el pedido POST e hicimos algo con los datos que el usuario ingresó en el formulario, debemos enviarle una respuesta.
+
+Para evitar repetir código, una manera rápida de generar una respuesta es devolver un mensaje REDIRECT, que indica que la navegación se debe redireccionar a otra URL.
+
+Cuando el cliente (el navegador) recibe un mensaje REDIRECT hace un nuevo pedido GET a la URL indicada en el mensaje.
+
+En Flask se puede devolver una respuesta con el mensaje REDIRECT con el siguiente código:
+
+```python
+return redirect("/lista")
+```
+
+
+## FlaskWTF
+
+Hay que hacerlo bien, hay que hacer mas validacions
+
+```
+python -m pip install flask-wtf
+```
