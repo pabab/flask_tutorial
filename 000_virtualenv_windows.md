@@ -11,7 +11,7 @@ python -m pip install virtualenv
 ```
 1. Crear el entorno virtual en la carpeta venv
 ```
-python -m virtualenv venv
+virtualenv venv
 ```
 1. Activar el entorno virtual (hay que hacerlo nuevamente cada vez que se empieza a trabajar)
 ```
