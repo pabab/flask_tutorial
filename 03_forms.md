@@ -71,10 +71,24 @@ return redirect("/lista")
 ```
 
 
-## FlaskWTF
+## Validación de formularios
 
-Hay que hacerlo bien, hay que hacer mas validacions
+### Validación desde el servidor vs validación desde el cliente
+
+Validar los datos del formulario implica comprobar que el usuario ingresó datos correctos o que tienen sentido. La validación puede y debe hacerse desde ambos lados: servidor y cliente.
+
+Para validar los datos del formulario desde el cliente debemos editar el código HTML del formulario para agregar a los *inputs* los atributos necesarios, por ejemplo: *required*, *type*, *min*, *max*, etc.
+
+Validar los datos desde el cliente nos ahorra tiempo porque evitamos la demora de enviar los datos al servidor y esperar la respuesta, pero **siempre es necesario validar también los datos desde el servidor**. Esto es así por varias razones, en primer lugar porque no todas las validaciones se pueden realizar desde el cliente, hay datos que sólo están disponibles del lado del servidor (por ejemplo cuando al crear una cuenta el usuario ingresa un correo válido pero ya existe una cuenta con esa dirección de correo). Por otro lado, existen otras formas de enviar mensajes POST a un servidor además de los formularios, por eso no es suficiente contar sólo con la validación del cliente. 
+
+### FlaskWTF
+
+Como la creación y validación de formularios involucra cierta complejidad, vamps a utilizar una herramienta para facilitar la tarea: *FlaskWTF*.
+
+En primer lugar, es necesario instalar el paquete en el entorno virtual:
 
 ```
 python -m pip install flask-wtf
 ```
+
+El modelo con el que trabaja FlaskWTF es crear un modelo de formulario....
