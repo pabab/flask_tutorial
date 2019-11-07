@@ -91,4 +91,38 @@ En primer lugar, es necesario instalar el paquete en el entorno virtual:
 python -m pip install flask-wtf
 ```
 
-El modelo con el que trabaja FlaskWTF es crear un modelo de formulario....
+La idea de FlaskWTF es un crear **modelo** (es decir, una entidad que representa un modelo real). A partir de ese modelo *FlaskWTF* podrá ayudarnos generando el HTML del formulario y validando el mismo.
+
+Para crear un modelo para el formulario se debe heredar de la clase 
+
+```python 
+from flask_wtf import FlaskForm
+from wtforms import StringField,IntegerField
+from wtforms.validators import DataRequired, NumberRange
+from flask_wtf.csrf import CSRFProtect
+
+class FormularioAgregar(FlaskForm):
+    name = StringField('name')
+    time = IntegerField('time')
+```
+
+Dentro de la clase se agregan los datos que nos interesa que tenga el formulario. El tipo de cada dato corresponde a los [https://wtforms.readthedocs.io/en/stable/fields.html#basic-fields](tipos específicos que ofrece FlaskWTF), por ejemplo: BooleanField, IntegerField, StringField, etc.
+
+Además, como segundo parámetro de cada campo se puede agregar un parámetro opcional llamado *validators* que consiste en un arreglo de elementos del tipo **Validator** de WTForms. Los validadores se encargan precisamente de validar automáticamente los campos del formulario cuando el mismo es enviado.
+
+Por ejemplo, en el siguiente código se agregan validadores para cada uno de los campos. En el primer caso se agrega el validador **DataRequired** revisará que el campo *name* tenga un valor no nulo cuando el servidor reciba el formulario.
+
+Notar que los validadores van entre [] ya que su valor es una lista.
+
+En el caso del campo *time*, se trata de un IntegerField, es decir un campo entero. La lista lleva dos validadores un **DataRequired** y un **NumberRange**. Éste último valida que el valor numérico del campo se encuentre dentro de cierto rango.
+
+```python
+from flask_wtf import FlaskForm
+from wtforms import StringField,IntegerField
+from wtforms.validators import DataRequired, NumberRange
+from flask_wtf.csrf import CSRFProtect
+
+class FormularioAgregar(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+    time = IntegerField('time', validators=[DataRequired(), NumberRange(min=0, max=100)])
+```

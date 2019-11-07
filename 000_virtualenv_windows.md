@@ -9,10 +9,15 @@
 ```
 python -m pip install virtualenv
 ```
-1. Crear el entorno virtual en la carpeta venv
+1. Crear el entorno virtual (el siguiente comando creará una carpeta *venv* que alojará el entorno virtual)
 ```
 virtualenv venv
 ```
+ó, si el comando anterior no funciona
+```
+python -m virtualenv venv
+```
+
 1. Activar el entorno virtual (hay que hacerlo nuevamente cada vez que se empieza a trabajar)
 ```
 venv\Scripts\activate
