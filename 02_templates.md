@@ -58,12 +58,13 @@ Los archivos estáticos son generalmente:
 * Scripts de Javascript
 * Imágenes, sonidos, etc.
 
+[Descargar ejemplo](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/pabab/flask_tutorial/tree/master/examples/templates_static)
+
 ## Herencia de plantillas
 
 Una plantilla puede tomar como base a otra y reemplazar sólo algunas partes de la misma, esto se conoce como **herencia de plantilla**. Para hacer esto se necesitan dos archivos: una plantilla de base que será la plantilla general y una segunda que heredará de la primera (tomará todo el contenido de la primera y reemplazará o agregará algunas partes).
 
 Debajo se muestra el contenido del archivo *base.html* que constituye una plantilla que se utilizará como base común para otras.
-
 
 ```html
 <!DOCTYPE html>
@@ -103,7 +104,6 @@ Para heredar de la plantilla *base.html* se debe incluir la directiva ```{% exte
 ```
 
 El resultado de invocar a *render_template()* para renderizar la plantilla *main.html* sería el siguiente:
-
 
 ```html
 <!DOCTYPE html>
