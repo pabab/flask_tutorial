@@ -19,16 +19,15 @@ def hello2():
 app.run()
 ```
 
-Para crear una aplicación de Flask es necesario:
+El código anterior realiza lo siguiente:
 
 1. Importar el módulo Flask
-2. Crear un objeto de tipo Flask (la aplicación) pasándole como argumento el nombre de la aplicación (puede ser cualquiera)
+2. Crear un objeto de tipo Flask (la aplicación) pasándole como argumento el nombre de la aplicación (puede ser cualquier nombre)
 3. Definir las vistas/controladores
 4. Correr la aplicación con app.run()
 
 Para definir las vistas/controladores se debe crear funciones que devuelvan el código HTML que se visualizará.
-Antes de la definición de la función se debe anteponer el decorator ```@app.route(...)``` que define cuál es la dirección que al visualizarse con el navegador disparará la vista.
-
+Antes de la definición de la función se debe anteponer el decorator ```@app.route(...)``` que define cuál es la dirección que al visualizarse con el navegador disparará la vista. Más adelante veremos formas más sencillas de hacerlo mediante *templates*.
 
 Para correr la aplicación, el siguiente comando crea un servidor temporal de desarrollo para probar la aplicación:
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/css/style.css">
+    <head>
+    <body>
+        <h1>Ejemplo herencia de plantillas</h1>
+        
+        <nav>
+            <ul>
+                <li><a href="/doc1">Documento 1</a></li>
+                <li><a href="/doc2">Documento 2</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
+
+        <footer>
+            Escuela Experimental PROA Técnica San Francisco
+        </footer>
+    </body>
+</html>

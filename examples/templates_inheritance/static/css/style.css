@@ -1,0 +1,18 @@
+body {
+    font-family: Arial;
+}
+
+h1 {
+    background-color: teal;
+    color: white;
+    padding: 20px;
+}
+
+footer{
+    font-size: 12px;
+    background-color: slategray;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+}
