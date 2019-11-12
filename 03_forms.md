@@ -4,7 +4,9 @@
 
 HTTP funciona como un protocolo de pedido-respuesta entre un **cliente** y un **servidor**.
 
-El **cliente** (por ejemplo el navegador web) solicita un recurso al **servidor** (por ejemplo la aplicación en Flask) y este último le devuelve una respuesta. La respuesta contiene información sobre el estado del pedido y también puede incluir contenido (código HTML por ejemplo).
+El **cliente** (por ejemplo el navegador web) solicita un recurso al **servidor** (por ejemplo la aplicación en Flask) y este último le devuelve una respuesta. La respuesta contiene información sobre el estado del pedido y también puede incluir contenido (código HTML por ejemplo) como se muestra en la siguiente imagen.
+
+![](https://www.ntu.edu.sg/home/ehchua/programming/webprogramming/images/HTTP_ResponseMessageExample.png)
 
 Existen diferentes métodos para realizar un pedido, los métodos más comunes son **GET** y **POST**.
 
@@ -17,7 +19,7 @@ Existen diferentes maneras de generar estos pedidos. Por ejemplo, los pedidos GE
 
 ## Formularios y pedidos POST
 
-Una forma de generar pedidos POST es a través de formularios. La etiqueta <form> permite especificar los atributos *method* y *action*. En *method* se puede especificar el tipo de request que generará el formulario (por ejemplo GET o POST).
+Una forma de generar pedidos POST es a través de formularios. La etiqueta <form> permite definir un formulario. Los atributos *method* y *action* especifican el tipo de request que generará el formulario (por ejemplo GET o POST) y la URL o dirección del servidor al cual se dirigirá dicho mensaje.
 
 
 ```html
@@ -32,7 +34,9 @@ Una forma de generar pedidos POST es a través de formularios. La etiqueta <form
 </form>
 ```
 
-Hay que programar desde el lado del servidor un endpoint /agregar que reciba los datos, es decir que reciba pedidos GET y también pedidos POST. Para eso se agrega el siguiente decorador arriba de la función:
+El formulario del ejemplo enviará los datos mediante un método POST al endpoint /agregar del mismo servidor desde el cual se cargo el formulario. Los datos consistirán en dos variables: *user* y *time*.
+
+Hay que programar desde el lado del servidor un endpoint */agregar* que reciba dichos datos, es decir que reciba pedidos GET y también pedidos POST. Para eso se agrega el siguiente decorador arriba de la función:
 
 ```python
 @app.route("/agregar", methods=["GET", "POST"])
@@ -69,7 +73,7 @@ En Flask se puede devolver una respuesta con el mensaje REDIRECT con el siguient
 ```python
 return redirect("/lista")
 ```
-
+![](https://www.seobility.net/en/wiki/images/d/d3/Post-Redirect-Get.png)
 
 ## Validación de formularios
 
