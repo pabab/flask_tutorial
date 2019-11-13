@@ -40,4 +40,13 @@ También se puede ejecutar el servidor, de manera que se reinicie automáticamen
 FLASK_APP=main.py FLASK_DEBUG=1 python -m flask run
 ```
 
+ó, en Windows
+
+```
+set FLASK_APP=main.py
+set FLASK_DEBUG=1
+python -m flask run
+```
+cambiando *main.py* por el nombre del archivo de la aplicación. 
+
 [Descargar ejemplo](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/pabab/flask_tutorial/tree/master/examples/helloworld)

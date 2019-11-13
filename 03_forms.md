@@ -130,3 +130,60 @@ class FormularioAgregar(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     time = IntegerField('time', validators=[DataRequired(), NumberRange(min=0, max=100)])
 ```
+
+### CSRF Protection
+
+CSRF (Cross Site Request Forgery) es un tipo de exploit malicioso de un sitio web en el que comandos no autorizados son transmitidos por un usuario en el cual el sitio web confía.
+
+Es necesario programar en el servidor mecanismos que permitan evitar este tipo de ataques.
+
+Afortunadamente Flask-WTF provee mecanismos para evitar este tipo de ataques agregando un número clave a cada formulario que se renderiza. Cuando el usuario envía los datos del formulario, también se envía este número clave junto con los datos, lo cual le permite al servidor saber que los datos provienen de un usuario legítimo.
+
+Para configurar estos mecanismos de proteccion es necesario realizar algunos pasos. 
+
+En primer lugar, importar **CSRFProtect** 
+
+```python
+from flask_wtf.csrf import CSRFProtect
+```
+
+En segundo lugar, es necesario crear un objeto **CSRFProtect** para proteger la aplicación: 
+
+```python
+app = Flask("myapp")
+csrf = CSRFProtect(app)
+app.config['SECRET_KEY'] = "secret"
+```
+
+El último paso agrega una clave secreta a partir de la cual se generarán los números clave para los formularios. En este caso la clave es "*secret*", pero puede ser cualquier palabra o frase.
+
+## Renderizado y validación
+
+En la vista, se debe crear una instancia del formulario-modelo que creamos anteriormente (FormularioAgregar). Este objeto nos permitirá, como dijimos antes, facilitar el renderizado del formulario por un lado y la validación de datos por otro.
+
+El llamado al método *validate_on_submit()* del formulario permite validar los datos enviados por el usuario. El método **sólo devolverá verdadero** si el usuario envió datos al endpoint (es decir, con el método POST) y los datos cumplen con los criterios de validación expresados durante la creación del modelo.
+
+En este caso, si los datos son válidos, se creará un diccionario (*competidor*) con los datos enviados y se añadirá al arreglo *competidores*.
+
+```python
+@app.route("/agregar", methods=["GET", "POST"])
+def agregar():
+    form = FormularioAgregar()
+    if form.validate_on_submit():
+        competidor = {
+            'nombre': request.form["materia"],
+            'tiempo': request.form["time"],
+        }
+        competidores.append(competidor)
+        return redirect("/lista")
+    else:
+        return render_template("agregar.html", form=form)
+```
+
+Además, para poder renderizar el formulario más fácilmente es conveniente pasar el objeto formulario creado antes al método *render_template()* para poder acceder a dicho objeto desde el formulario.
+
+## Renderizado del formulario 
+
+
+
+
