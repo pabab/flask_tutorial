@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    Errores form:
+        {% for error in form.errors %}
+            <span class="help-block">{{ error }}</span>
+        {% endfor %}
+        
+    Errores name:
+        {% for error in form.name.errors %}
+            <span class="help-block">{{ error }}</span>
+        {% endfor %}
+
+    Errores time:
+        {% for error in form.time.errors %}
+            <span class="help-block">{{ error }}</span>
+        {% endfor %}
+</div>
+
+<form method="POST" action="/agregar">
+    {{ form.csrf_token }}
+    {{ form.name.label }}{{ form.name }}
+    <br>
+    {{ form.time.label }}{{ form.time }}
+    <br>
+    <input type="submit" value="ajskhd">
+</form>
+{% endblock %}

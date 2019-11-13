@@ -180,10 +180,25 @@ def agregar():
         return render_template("agregar.html", form=form)
 ```
 
-Además, para poder renderizar el formulario más fácilmente es conveniente pasar el objeto formulario creado antes al método *render_template()* para poder acceder a dicho objeto desde el formulario.
+1Además, para poder renderizar el formulario más fácilmente es conveniente pasar el objeto formulario creado antes al método *render_template()* para poder acceder a dicho objeto desde el formulario.
 
 ## Renderizado del formulario 
 
+Para renderizar el formulario, desde la plantilla, **y si pasamos el formulario como argumento** a la función *render_template()* podemos hacer lo siguiente para crear automáticamente el HTML correspondiente a los campos.
 
+```html
+<form method="POST" action="/agregar">
+    {{ form.csrf_token }}
+    {{ form.name.label }}{{ form.name }}
+    <br>
+    {{ form.time.label }}{{ form.time }}
+    <br>
+    <input type="submit" value="ajskhd">
+</form>
+```
+
+La línea ```{{ form.csrf_token }}``` renderiza un campo oculto del formulario (no se visualizará pero sí se enviará con los datos).
+
+La sentencia ```{{ form.name.label }}``` renderiza una etiqueta **<label>** corre con los datos correspondientes al campo *name* declarado en el modelo del formulario. Por otro lado, la sentencia ```{{ form.name.field }}``` renderiza el campo **<input>**, con los atributos necesarios para las validaciones declaradas para el campo *name* en el modelo del formulario.
 
 
