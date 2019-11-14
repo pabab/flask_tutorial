@@ -202,3 +202,4 @@ La línea ```{{ form.csrf_token }}``` renderiza un campo oculto del formulario (
 La sentencia ```{{ form.name.label }}``` renderiza una etiqueta **<label>** corre con los datos correspondientes al campo *name* declarado en el modelo del formulario. Por otro lado, la sentencia ```{{ form.name.field }}``` renderiza el campo **<input>**, con los atributos necesarios para las validaciones declaradas para el campo *name* en el modelo del formulario.
 
 
+[Descargar ejemplo](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/pabab/flask_tutorial/tree/master/examples/forms_wtf)
