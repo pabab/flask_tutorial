@@ -163,7 +163,11 @@ En la vista, se debe crear una instancia del formulario-modelo que creamos anter
 
 El llamado al método *validate_on_submit()* del formulario permite validar los datos enviados por el usuario. El método **sólo devolverá verdadero** si el usuario envió datos al endpoint (es decir, con el método POST) y los datos cumplen con los criterios de validación expresados durante la creación del modelo.
 
-En este caso, si los datos son válidos, se creará un diccionario (*competidor*) con los datos enviados y se añadirá al arreglo *competidores*.
+En este caso, si los datos son válidos, se puede acceder a los datos del formulario utilizando los mismos campos que se declararon al crear el modelo (en este caso *name* y *time*). Estos datos ya se encontrarán validados por el propio formulario.
+
+Es importante, al acceder a los datos, hacerlo con el subcampo *data* de cada campo, por ejemplo, ```form.name.data``` y no sólo ```form.name```, ya que esta última forma implica acceder a todo el campo (el control gráfico donde se ingresan los datos) y la primer manera proporciona únicamente los datos ingresados. 
+
+En el ejemplo siguiente se creará un diccionario (*competidor*) con los datos enviados y se añadirá al arreglo *competidores*.
 
 ```python
 @app.route("/agregar", methods=["GET", "POST"])
@@ -171,8 +175,8 @@ def agregar():
     form = FormularioAgregar()
     if form.validate_on_submit():
         competidor = {
-            'nombre': request.form["materia"],
-            'tiempo': request.form["time"],
+            'nombre': form.name.data,
+            'tiempo': form.time.data,
         }
         competidores.append(competidor)
         return redirect("/lista")
@@ -180,7 +184,7 @@ def agregar():
         return render_template("agregar.html", form=form)
 ```
 
-1Además, para poder renderizar el formulario más fácilmente es conveniente pasar el objeto formulario creado antes al método *render_template()* para poder acceder a dicho objeto desde el formulario.
+Además, para poder renderizar el formulario más fácilmente es conveniente pasar el objeto formulario creado antes al método *render_template()* para poder acceder a dicho objeto desde el formulario.
 
 ## Renderizado del formulario 
 
